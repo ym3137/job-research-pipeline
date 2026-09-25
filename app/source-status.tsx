@@ -1,0 +1,6 @@
+import {Table,TableHeader,TableBody,TableRow,TableHead,TableCell} from '@/components/ui/table';
+export type SourceAccess={source:string;status:string;reason:string;impact:string;url:string;checkedAt:string};
+const labels:Record<string,string>={accessible:'已读取',partial:'部分读取',blocked:'访问受限',unverified:'未核实',not_attempted:'未检索'};
+export function SourceStatus({sources,verified}:{sources?:SourceAccess[];verified?:string}){
+ return <section className="source-status"><h3>来源访问与结论限制</h3><p>{verified==='verified'?'请结合各来源实际覆盖范围阅读结论。':'社区交叉验证尚未完成。官网岗位信息可用；薪资、工时和员工体验仍有待确认部分。'}</p>{sources?.length?<Table><TableHeader><TableRow><TableHead>来源 / 状态</TableHead><TableHead>原因与读取范围</TableHead><TableHead>对结论的影响</TableHead></TableRow></TableHeader><TableBody>{sources.map((s,i)=><TableRow key={i}><TableCell><strong>{s.source}</strong><span className={`basis ${s.status==='accessible'?'official':'unknown'}`}>{labels[s.status]||'未核实'}</span>{s.checkedAt&&<small>{s.checkedAt}</small>}{s.url.startsWith('https://')&&<a href={s.url} target="_blank" rel="noreferrer">查看来源 ↗</a>}</TableCell><TableCell>{s.reason}</TableCell><TableCell>{s.impact}</TableCell></TableRow>)}</TableBody></Table>:<p>旧报告没有保存逐来源访问记录，不能据此判断所有论坛均访问受限。</p>}</section>;
+}

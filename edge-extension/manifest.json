@@ -1,0 +1,17 @@
+{
+  "manifest_version": 3,
+  "name": "求职工作台 · Edge 连接",
+  "version": "1.1.0",
+  "description": "通过 Edge 读取动态招聘官网和已登录的小红书原帖；登录凭据留在浏览器。",
+  "permissions": ["storage", "alarms", "scripting"],
+  "host_permissions": [
+    "http://127.0.0.1/*",
+    "https://www.xiaohongshu.com/*",
+    "https://app.mokahr.com/*"
+  ],
+  "background": { "service_worker": "worker.js", "type": "module" },
+  "content_scripts": [
+    { "matches": ["http://127.0.0.1/*"], "js": ["connect.js"] }
+  ],
+  "action": { "default_title": "求职工作台连接", "default_popup": "popup.html" }
+}

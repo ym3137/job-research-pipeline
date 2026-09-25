@@ -1,0 +1,17 @@
+{
+  "displayName": "你的姓名",
+  "displayNameEn": "Your Name",
+  "resumeHeader": "城市 ｜ 性别 ｜ 年龄 ｜ 手机号 ｜ you@example.com ｜ github.com/yourname",
+  "author": "Your Name",
+  "templateDocx": "./config/resume-template.docx",
+  "renderScript": "",
+  "pdftoppm": "pdftoppm",
+  "credentialRules": [
+    {
+      "_comment": "本人声明不再展示的资格：pattern 匹配到就删掉或替换，keepIfPresent 命中时连同分隔符一起删除。真实规则写在 profile.json，不入库。",
+      "pattern": "(?:示例证书|Example Certificate)\\s*[：:]?\\s*\\d*",
+      "replaceWith": "",
+      "keepIfPresent": ""
+    }
+  ]
+}
